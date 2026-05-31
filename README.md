@@ -38,7 +38,7 @@ sudo ss -tulnp | grep ssh
 ```
 
 확인 결과:
-![[Pasted image 20260531101603.png]]
+![SSH 설정 확인](images/Pasted%20image%2020260531101603.png)
 ### 1.2 방화벽 설정
 
 방화벽은 서버에 들어오거나 서버에서 나가는 네트워크 요청을 규칙에 따라 통제하는 기능이다. 이번 미션에서는 필요한 포트만 열어두고 나머지 인바운드 접근은 차단하는 방식으로 구성했다.
@@ -72,7 +72,7 @@ sudo ufw status verbose
 ```
 
 확인 결과:
-![[Pasted image 20260531101847.png]]
+![UFW 상태 확인](images/Pasted%20image%2020260531101847.png)
 
 ## 2. 계정/그룹/권한 체계
 
@@ -121,7 +121,7 @@ getent group agent-core
 ```
 
 확인 결과:
-![[Pasted image 20260531102210.png]]
+![계정 및 그룹 확인](images/Pasted%20image%2020260531102210.png)
 ### 2.2 디렉토리 구조 생성
 
 과제 수행에 필요한 파일 및 로그 등을 저장할 디렉토리를 생성한다.
@@ -189,12 +189,12 @@ sudo getfacl /var/log/agent-app
 ```
 
 확인 결과:
-![[Pasted image 20260531102825.png]]
+![권한 확인 1](images/Pasted%20image%2020260531102825.png)
 
-![[Pasted image 20260531102852.png]]
+![권한 확인 2](images/Pasted%20image%2020260531102852.png)
 
-![[Pasted image 20260531102920.png]]
-![[Pasted image 20260531102940.png]]
+![ACL 확인 1](images/Pasted%20image%2020260531102920.png)
+![ACL 확인 2](images/Pasted%20image%2020260531102940.png)
 
 ## 3. 애플리케이션 실행 환경 구성
 
@@ -216,7 +216,7 @@ ls -l /home/agent-admin/agent-app/
 ```
 
 확인 결과:
-![[Pasted image 20260531105728.png]]
+![앱 파일 배치 확인](images/Pasted%20image%2020260531105728.png)
 
 ### 3.2 환경 변수 설정
 
@@ -244,7 +244,7 @@ env | grep AGENT
 
 확인 결과:
 
-![[Pasted image 20260531105806.png]]
+![환경 변수 확인](images/Pasted%20image%2020260531105806.png)
 ### 3.3 키 파일 생성
 
 키 파일은 미션에서 요구한 경로와 내용으로 생성했다.
@@ -256,7 +256,7 @@ ls /home/agent-admin/agent-app/api_keys/
 ```
 
 확인 결과:
-![[Pasted image 20260531105925.png]]
+![키 파일 확인](images/Pasted%20image%2020260531105925.png)
 ### 3.4 앱 실행 확인
 
 앱은 root가 아닌 `agent-admin` 계정으로 실행했다.
@@ -266,7 +266,7 @@ $AGENT_HOME/agent-app
 ```
 
 확인 결과:
-![[Pasted image 20260531110040.png]]
+![앱 실행 확인](images/Pasted%20image%2020260531110040.png)
 
 성공 기준:
 
@@ -282,7 +282,7 @@ sudo ss -tulnp | grep 15034
 
 확인 결과:
 
-![[Pasted image 20260531110244.png]]
+![앱 포트 LISTEN 확인](images/Pasted%20image%2020260531110244.png)
 ## 4. 시스템 관제 자동화 스크립트 구현
 
 ### 4.1 파일 위치와 권한
@@ -345,10 +345,10 @@ tail -n 10 /var/log/agent-app/monitor.log
 ```
 
 확인 결과:
-![[Pasted image 20260531112717.png]]
+![monitor.sh 실행 결과](images/Pasted%20image%2020260531112717.png)
 
 
-![[Pasted image 20260531112653.png]]
+![monitor.log 확인](images/Pasted%20image%2020260531112653.png)
 ### 4.4 로그 용량 관리
 
 `monitor.log`가 계속 커지는 것을 막기 위해 logrotate 정책을 추가했다.
@@ -421,5 +421,5 @@ tail -f /var/log/agent-app/monitor.log
 ```
 
 확인 결과:
-![[Pasted image 20260531120617.png]]
-![[Pasted image 20260531120535.png]]
+![crontab 등록 확인](images/Pasted%20image%2020260531120617.png)
+![cron 자동 실행 확인](images/Pasted%20image%2020260531120535.png)
